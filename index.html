@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>La Brownería | Repostería Gourmet</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+    .toppings {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.toppings p {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+.toppings label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-bottom: 6px;
+    font-size: 0.9em;
+}
+
+.toppings input[type="checkbox"] {
+    pointer-events: auto;
+    opacity: 1;
+    accent-color: #f3c4d4; /* rosa elegante */
+}
+
+.card {
+    position: relative;
+    z-index: 2;
+}
+    .toppings {
+    margin-top: 15px;
+    text-align: left;
+}
+
+.toppings label {
+    display: block;
+    cursor: pointer;
+    margin: 6px 0;
+}
+
+.toppings input {
+    margin-right: 8px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+}
+    .product-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.toppings {
+    display: none;
+    margin-top: 15px;
+    text-align: left;
+    background: rgba(255,255,255,0.08);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.toppings ul {
+    padding-left: 18px;
+    margin: 10px 0 0;
+}
+
+:root {
+    --chocolate: #1a0b0e;
+    --vino: #6d1b2a;
+    --marfil: #f8f3ef;
+    --gris: #8a8a8a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f6c1d1;
+    color: var(--Rojo);
+}
+
+/* ANIMACIÓN */
+@keyframes fadeModern {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+    padding: 110px 10%;
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    background:
+        linear-gradient(180deg, rgba(15,7,9,0.4), rgba(15,7,9,0.85)),
+        url("https://images.unsplash.com/photo-1606312619344-42b1df8c2c3a?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero > div {
+    animation: fadeModern 1.2s ease forwards;
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3em, 6vw, 4.5em);
+    letter-spacing: 3px;
+}
+
+.tagline {
+    margin-top: 25px;
+    font-size: 1.3em;
+    color: #e4d8cf;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* GALERÍA */
+.galeria {
+    background: #fde7ef;
+}
+
+.galeria h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6em;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+.editorial-item {
+    overflow: hidden;
+    border-radius: 26px;
+}
+
+.editorial-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* VALOR */
+.valor {
+    background: linear-gradient(180deg, #f8f3ef, #efe6df);
+    color: var(--Rosa);
+    text-align: center;
+}
+
+.valor p {
+    max-width: 720px;
+    margin: auto;
+    color: var(--Rosa);
+}
+
+/* MENÚ */
+.menu h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6em;
+    margin-bottom: 60px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 35px;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 40px 30px;
+    border-radius: 28px;
+}
+
+.card h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* CTA */
+.cta {
+    background: linear-gradient(135deg, #6d1b2a, #4f131f);
+    text-align: center;
+}
+
+.cta a {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 16px 40px;
+    border-radius: 50px;
+    background: var(--marfil);
+    color: var(--vino);
+    text-decoration: none;
+}
+
+/* FOOTER */
+footer {
+    background: #0b0406;
+    text-align: center;
+    padding: 40px;
+}
+
+footer a {
+    color: #cbb8ae;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+/* WHATSAPP */
+.whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    padding: 14px 26px;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+}
+    /* ===== TOPPINGS ESTILO BOTONES ===== */
+.toppings {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.toppings button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #f3c4d4;
+    border-radius: 20px;
+    padding: 6px 12px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+.toppings button.selected {
+    background: #f3c4d4;
+    color: #1a0b0e;
+    border-color: #f3c4d4;
+}
+
+.toppings button:hover {
+    background: rgba(243,196,212,0.3);
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <div>
+        <div class="brand">La Brownería</div>
+        <div class="tagline">
+            Repostería gourmet para regalar momentos inolvidables
+        </div>
+    </div>
+</section>
+
+<section class="galeria">
+    <h2>Momentos que se Regalan</h2>
+    <div class="editorial-grid">
+
+       <div class="editorial-item pizza-brownie">
+    <img src="/static/images/brownie5.png"
+     alt="Pizza Brownie gourmet de La Brownería">
+</div>
+
+<div class="editorial-item cupcakes-personalizados">
+    <img src="/static/images/brownie6.png"
+         alt="Cupcakes personalizados">
+</div>
+
+<div class="editorial-item brownies-caja-personalizada">
+    <img src="/static/images/brownie7.png"
+         alt="Brownies en caja personalizada">
+</div>
+
+<div class="editorial-item mini-cakes-personalizados">
+    <img src="/static/images/brownie8.png"
+         alt="Mini cakes personalizados">
+</div>
+    </div>
+</section>
+
+<section class="valor">
+    <h2>Edición Especial San Valentín</h2>
+    <p>Cada creación de La Brownería está pensada como un detalle exclusivo.</p>
+</section>
+
+
+<section class="menu">
+    <h2>Colección 14 de Febrero</h2>
+
+    <div class="cards" id="menu-container">
+        <!-- El menú se genera con JavaScript -->
+    </div>
+
+
+</section>
+
+<section class="cta">
+    <h2>Reserva tu pedido</h2>
+
+    <a
+        href="https://api.whatsapp.com/send?phone=5219371214852&text=Hola%20%F0%9F%91%8B%20Quiero%20hacer%20un%20pedido%20en%20La%20Browner%C3%ADa.%20Me%20interesa%20la%20Colecci%C3%B3n%2014%20de%20Febrero%20%F0%9F%92%9D"
+        target="_blank" rel="noopener">
+        Contactar por WhatsApp
+    </a>
+</section>
+<footer>
+    <a href="https://www.instagram.com/labrowneriacard" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/labrowneriacardenas" target="_blank">Facebook</a>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5219371214852" target="_blank">
+    WhatsApp
+</a>
+<script>
+function toggleToppings(id) {
+    const el = document.getElementById("toppings-" + id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+}
+</script>
+<script>
+const menu = [
+    {
+        nombre: "Pizza Brownie Grande $500",
+        descripcion: "Toppings a elegir (6). Toppings extra $15",
+        imagen: "/static/images/hero3.png",
+        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "ConejoTurin", "Oreo", "PaletaPayaso","Snikers"]
+    },
+    {
+        nombre: "Pizza Brownie Chica $270",
+        descripcion: "Toppings a elegir (4). Toppings extra $15",
+        imagen: "/static/images/hero3.png",
+        toppings: ["Nutella", "Fresas", "CarlosV", "Lunetas", "Bubulubu", "AzucarGlas", "Oreo"]
+    },
+      {
+        nombre: "Roles en caja Personalizada $220",
+        descripcion: "Toppings a elegir (4). Toppings extra $15",
+        imagen: "/static/images/hero4.png",
+        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "Oreo", "PaletaPayaso","Snikers"]
+    },
+    {
+        nombre: "Cupcakes Personalizados $280",
+        descripcion: "Cupcakes con diseño especial",
+        imagen: "/static/images/postre1.png",
+        toppings: ["Nutella", "FrutosRojos", "Cajeta", "Chocolate", "Philadenfia", "Zarzamora", "CremaPastelera"],
+        pan: ["Vainilla", "Chocolate", "Red Velvet"]
+    },
+    {
+        nombre: "Brownies en Caja $380",
+        descripcion: "Caja regalo premium",
+        imagen: "/static/images/hero2.png",
+        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "AzucarGlas", "Oreo", "CarlosV"]
+    },
+    {
+        nombre: "Mini Cakes $180",
+        descripcion: "Pasteles pequeños personalizados",
+        imagen: "/static/images/postre2.png",
+        toppings: ["Nutella", "FrutosRojos", "Cajeta", "Chocolate", "Zarzamora", "CremaPastelera"],
+        pan: ["Vainilla", "Chocolate", "Red Velvet"]
+    }
+];
+
+const container = document.getElementById("menu-container");
+
+menu.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+     let panHTML = "";
+    if(item.pan) {
+        panHTML = `<div class="pan">
+            <p><strong>Elige el tipo de pan:</strong></p>
+            ${item.pan.map(p => `
+                <label>
+                    <input type="radio" name="pan-${item.nombre}" value="${p}" required>
+                    ${p}
+                </label>
+            `).join("")}
+        </div>`;
+    }
+
+    card.innerHTML = `
+        <img src="${item.imagen}" alt="${item.nombre}" class="product-img">
+
+        <h3>${item.nombre}</h3>
+        <p>${item.descripcion}</p>
+
+        <div class="toppings">
+        <p><strong>Elige ${item.nombre.includes("Cupcakes") || item.nombre.includes("Mini Cakes") ? "rellenos" : "toppings"}:</strong></p>
+            ${item.toppings.map(t => `
+                <label>
+                    <input type="checkbox" value="${t}">
+                    ${t}
+                </label><br>
+            `).join("")}
+        </div>
+
+        ${panHTML}  <!-- Aquí se inserta el selector de pan -->
+
+        <button class="btn-whatsapp">
+            Pedir por WhatsApp
+        </button>
+    `;
+
+    card.querySelector(".btn-whatsapp").onclick = () => {
+        const seleccionados = [...card.querySelectorAll("input:checked")]
+            .map(i => i.value);
+
+        const toppingsTexto = seleccionados.length
+            ? seleccionados.join(", ")
+            : "Sin toppings adicionales";
+
+        const tipo = item.nombre.includes("Cupcakes") || item.nombre.includes("Mini Cakes")
+            ? "Rellenos"
+            : "Toppings";
+
+
+            let panSeleccion = "No aplica";
+        const panInput = card.querySelector(".pan input:checked");
+        if(panInput) panSeleccion = panInput.value;
+
+
+        const mensaje = encodeURIComponent(
+`Hola \u{1F44B}\u{2728}
+Quisiera realizar un pedido en *La Brownería* \u{1F36B}
+
+📌 *Producto:* ${item.nombre}
+🍓 *Toppings:* ${toppingsTexto}
+🥖 *Pan:* ${panSeleccion}
+
+Quedo atento(a), muchas gracias \u{2764}\u{FE0F}`
+        );
+
+        window.open(
+            `https://wa.me/5219371214852?text=${mensaje}`,
+            "_blank"
+        );
+    };
+
+    container.appendChild(card);
+});
+</script>
+</body>
+</html>
