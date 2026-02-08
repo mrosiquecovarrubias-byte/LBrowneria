@@ -174,11 +174,25 @@ section {
     border-radius: 26px;
 }
 
+.editorial-item {
+    overflow: hidden;
+    border-radius: 26px;
+    aspect-ratio: 4 / 5;
+}
+
 .editorial-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.editorial-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 26px;
 }
 
 /* VALOR */
@@ -306,22 +320,27 @@ footer a {
     <div class="editorial-grid">
 
        <div class="editorial-item pizza-brownie">
-    <img src="/static/images/brownie5.png"
+    <img src="static/images/brownie5.png"
      alt="Pizza Brownie gourmet de La Brownería">
 </div>
 
 <div class="editorial-item cupcakes-personalizados">
-    <img src="/static/images/brownie6.png"
+    <img src="static/images/brownie6.png"
          alt="Cupcakes personalizados">
 </div>
 
 <div class="editorial-item brownies-caja-personalizada">
-    <img src="/static/images/brownie7.png"
+    <img src="static/images/brownie7.png"
          alt="Brownies en caja personalizada">
+</div>
+        <div class="editorial-item">
+    <video autoplay muted loop playsinline>
+        <source src="static/videos/brownie-video.mp4" type="video/mp4">
+    </video>
 </div>
 
 <div class="editorial-item mini-cakes-personalizados">
-    <img src="/static/images/brownie8.png"
+    <img src="static/images/brownie8.png"
          alt="Mini cakes personalizados">
 </div>
     </div>
@@ -371,39 +390,39 @@ const menu = [
     {
         nombre: "Pizza Brownie Grande $500",
         descripcion: "Toppings a elegir (6). Toppings extra $15",
-        imagen: "/static/images/hero3.png",
-        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "ConejoTurin", "Oreo", "PaletaPayaso","Snikers"]
+        imagen: "static/images/hero3.png",
+        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "Oreo"]
     },
     {
         nombre: "Pizza Brownie Chica $270",
         descripcion: "Toppings a elegir (4). Toppings extra $15",
-        imagen: "/static/images/hero3.png",
-        toppings: ["Nutella", "Fresas", "CarlosV", "Lunetas", "Bubulubu", "AzucarGlas", "Oreo"]
+        imagen: "static/images/hero3.png",
+        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "AzucarGlas", "Oreo"]
     },
-      {
+    {
         nombre: "Roles en caja Personalizada $220",
         descripcion: "Toppings a elegir (4). Toppings extra $15",
-        imagen: "/static/images/hero4.png",
+        imagen: "static/images/hero4.png",
         toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "Oreo", "PaletaPayaso","Snikers"]
     },
     {
         nombre: "Cupcakes Personalizados $280",
         descripcion: "Cupcakes con diseño especial",
-        imagen: "/static/images/postre1.png",
-        toppings: ["Nutella", "FrutosRojos", "Cajeta", "Chocolate", "Philadenfia", "Zarzamora", "CremaPastelera"],
+        imagen: "static/images/postre1.png",
+        toppings: ["Nutella", "Fresas", "CarlosV", "Lunetas", "Chokis", "AzucarGlas", "Oreo"],
         pan: ["Vainilla", "Chocolate", "Red Velvet"]
     },
     {
         nombre: "Brownies en Caja $380",
         descripcion: "Caja regalo premium",
-        imagen: "/static/images/hero2.png",
-        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "AzucarGlas", "Oreo", "CarlosV"]
+        imagen: "static/images/hero2.png",
+        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "AzucarGlas", "Oreo"]
     },
     {
         nombre: "Mini Cakes $180",
         descripcion: "Pasteles pequeños personalizados",
-        imagen: "/static/images/postre2.png",
-        toppings: ["Nutella", "FrutosRojos", "Cajeta", "Chocolate", "Zarzamora", "CremaPastelera"],
+        imagen: "static/images/postre2.png",
+        toppings: ["Nutella", "Fresas", "KinderDelice", "Ferrero", "Bubulubu", "AzucarGlas", "Oreo"],
         pan: ["Vainilla", "Chocolate", "Red Velvet"]
     }
 ];
@@ -414,7 +433,13 @@ menu.forEach(item => {
     const card = document.createElement("div");
     card.className = "card";
 
-     let panHTML = "";
+    // Definir si mostrar "Toppings" o "Rellenos"
+    const tipo = item.nombre.includes("Cupcakes") || item.nombre.includes("Mini Cakes")
+        ? "Rellenos"
+        : "Toppings";
+
+    // HTML de pan si aplica
+    let panHTML = "";
     if(item.pan) {
         panHTML = `<div class="pan">
             <p><strong>Elige el tipo de pan:</strong></p>
@@ -427,6 +452,7 @@ menu.forEach(item => {
         </div>`;
     }
 
+    // HTML del card
     card.innerHTML = `
         <img src="${item.imagen}" alt="${item.nombre}" class="product-img">
 
@@ -434,7 +460,7 @@ menu.forEach(item => {
         <p>${item.descripcion}</p>
 
         <div class="toppings">
-        <p><strong>Elige ${item.nombre.includes("Cupcakes") || item.nombre.includes("Mini Cakes") ? "rellenos" : "toppings"}:</strong></p>
+            <p><strong>Elige tus ${tipo}:</strong></p>
             ${item.toppings.map(t => `
                 <label>
                     <input type="checkbox" value="${t}">
@@ -443,40 +469,45 @@ menu.forEach(item => {
             `).join("")}
         </div>
 
-        ${panHTML}  <!-- Aquí se inserta el selector de pan -->
+        ${panHTML}
 
         <button class="btn-whatsapp">
             Pedir por WhatsApp
         </button>
     `;
 
+    // Función del botón WhatsApp
     card.querySelector(".btn-whatsapp").onclick = () => {
-        const seleccionados = [...card.querySelectorAll("input:checked")]
+        const seleccionados = [...card.querySelectorAll("input[type='checkbox']:checked")]
             .map(i => i.value);
 
-        const toppingsTexto = seleccionados.length
+        const seleccionTexto = seleccionados.length
             ? seleccionados.join(", ")
-            : "Sin toppings adicionales";
+            : `Sin ${tipo.toLowerCase()} adicionales`;
 
-        const tipo = item.nombre.includes("Cupcakes") || item.nombre.includes("Mini Cakes")
-            ? "Rellenos"
-            : "Toppings";
-
-
-            let panSeleccion = "No aplica";
+        let panSeleccion = "No aplica";
         const panInput = card.querySelector(".pan input:checked");
         if(panInput) panSeleccion = panInput.value;
 
 
+        guardarPedido({
+            producto: item.nombre,
+            toppings: seleccionTexto,
+            pan: panSeleccion,
+            pagina: document.title,
+            fecha: new Date().toLocaleString()
+});
+
+
         const mensaje = encodeURIComponent(
-`Hola \u{1F44B}\u{2728}
-Quisiera realizar un pedido en *La Brownería* \u{1F36B}
+`Hola 👋✨
+Quisiera realizar un pedido en *La Brownería* 🍫
 
 📌 *Producto:* ${item.nombre}
-🍓 *Toppings:* ${toppingsTexto}
+🍓 *${tipo}:* ${seleccionTexto}
 🥖 *Pan:* ${panSeleccion}
 
-Quedo atento(a), muchas gracias \u{2764}\u{FE0F}`
+Quedo atento(a), muchas gracias 💗`
         );
 
         window.open(
@@ -487,6 +518,26 @@ Quedo atento(a), muchas gracias \u{2764}\u{FE0F}`
 
     container.appendChild(card);
 });
+
+function guardarPedido(pedido) {
+    fetch("https://script.google.com/macros/s/AKfycbxkoglDxZ0_ey9MgeyX2PZwEjO6olKDLTOvx8FldUdP9xSX3ssloTxrkpJ4G3jA5igdXA/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(pedido)
+    })
+    .then(() => {
+        console.log("Pedido enviado");
+    })
+    .catch(err => {
+        console.error("Error:", err);
+    });
+}
+
 </script>
+
+
 </body>
 </html>
