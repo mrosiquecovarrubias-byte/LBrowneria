@@ -209,6 +209,54 @@ section {
     margin-bottom: 10px;
   }
 }
+        @media (max-width: 768px) {
+  h2 {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 1.4em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+}
+.editorial-item {
+  aspect-ratio: 4 / 5;
+}
+
+.editorial-item img,
+.editorial-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 768px) {
+  .toppings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .toppings label {
+    background: rgba(255,255,255,0.12);
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 0.95em;
+  }
+
+  .toppings input {
+    transform: scale(1.2);
+  }
+}
+@media (max-width: 768px) {
+  .btn-whatsapp {
+    margin-top: 15px;
+  }
+}
 
 /* HERO */
 .hero {
@@ -854,4 +902,5 @@ document.getElementById("galeriaModal").addEventListener("click", () => {
 
 </body>
 </html>
+
 
